@@ -1,0 +1,6 @@
+enable the google sheets app here: https://developers.google.com/sheets/api/quickstart/nodejs
+
+download the credentials.json file and stick it into the project directory
+
+that's all you should have to do
+
