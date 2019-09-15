@@ -134,22 +134,6 @@ async function addStats(auth){
             }
         })
     };
-
-    // const fields = ["runecrafting","thieving","hunter","agility","slayer","construction","woodcutting","farming",
-    //    "easyClueScrolls","mediumClueScrolls","hardClueScrolls","eliteClueScrolls","masterClueScrolls"];
-    // let playerValues=[];
-    // let scores = await osrs.hiscores.getPlayer({name:"Trainer Bad", type: osrs.constants.playerTypes.normal}).then().catch(console.error);
-    // fields.forEach(function(field){
-    //     if (scores[field]["experience"]) {
-    //         playerValues.push(scores[field]["experience"]);
-    //     }
-    //     else{
-    //         playerValues.push(scores[field]["score"]);
-    //     }
-    // })
-    // //values.push(playerValues)
-    // console.log(values);
-
     sheets.spreadsheets.values.update({
         auth: auth,
         spreadsheetId: '1PI6c9DOX1xI1daghxPYHXj2BmfgpAfUoBOanbUtmBn8',
@@ -163,11 +147,10 @@ async function addStats(auth){
             console.log('The API returned an error: ' + err);
             return;
         } else {
-            console.log("Appended");
+            console.log("Updated one row");
         }
     });
 }
-//addStats();
 
 function wait(ms){
     var start = new Date().getTime();
