@@ -95,9 +95,9 @@ function listRSNS(auth) {
 
 async function addStats(auth){
     const sheets = google.sheets({version: 'v4', auth});
-    let players = ["Trainer Bad", "Makoara", "Sault", "Zestt", "Main Mukkor", "Lonely Wolf", "dickfield", "OfCoarse", "Al Hasa", "Bitesized", "Maive",
-        "Illioa", "Ily btw", "survived y2k", "Sir Mike S", "silent nmez", "SirMixaLot97", "Earhole", "jomanan", "Q7L", "Wicz", "Rundera", "Listifyy",
-       "Citadel wyrm", "AuroraRyall", "VienneseMelt", "Cave Worms", "Daevinan", "chaotickings", "Viing", "KyroLen", "Rock gooolem", "gz at 2277", "Sock Sucker", "LazyyySloth"]
+    let players = ["Trainer Bad", "Makoara", "Sault", "Zestt", "Main Mukkor", "Lonely Wolf", "dognet", "OfCoarse", "Al Hasa", "Bitesized", "Maive",
+        "Illioa", "Ily btw", "survived y2k", "Sir Mike S", "pyrokilldhc", "SirMixaLot97", "Earhole", "jomanan", "Q7L", "Wicz", "Rundera", "Listifyy",
+       "Citadel wyrm", "AuroraRyall", "VienneseMelt", "Cave Worms", "Daevinan", "chaotickings", "Viing", "KyroLen", "Rock gooolem", "gz at 2277", "Sock Sucker", "LazyyySloth", "The OnlyPyro"]
     let values = [];
     //let players = ["Trainer Bad", "Makoara", "Sault", "Zestt", "Main Mukkor", "Lonely Wolf", "dickfield", "OfCoarse", "Al Hasa"]
 
@@ -105,8 +105,8 @@ async function addStats(auth){
         console.log("Searching scores for " + player);
         let scores = await osrs.hiscores.getPlayer({name:player, type: osrs.constants.playerTypes.normal}).then().catch(console.error);
         wait(2000)
-        const fields = ["runecrafting","thieving","hunter","agility","slayer","construction","woodcutting","farming",
-            "easyClueScrolls","mediumClueScrolls","hardClueScrolls","eliteClueScrolls","masterClueScrolls"];
+        const fields = ["runecrafting","thieving","hunter","agility","slayer","construction","woodcutting","farming","fishing",
+            "easyClueScrolls","mediumClueScrolls","hardClueScrolls","eliteClueScrolls","masterClueScrolls","lastManStanding"];
         let playerValues = [];
         fields.forEach(function(field){
             if (scores[field]["experience"]) {
@@ -117,27 +117,12 @@ async function addStats(auth){
             }
         });
         values.push(playerValues);
-        sheets.spreadsheets.values.update({
-            auth: auth,
-            spreadsheetId: '1PI6c9DOX1xI1daghxPYHXj2BmfgpAfUoBOanbUtmBn8',
-            range: 'KyroLen!B2:N', //Change Sheet1 if your worksheet's name is something else
-            valueInputOption: "USER_ENTERED",
-            resource: {
-                values: values
-            }
-        }, (err, response) => {
-            if (err) {
-                console.log('The API returned an error: ' + err);
-                return;
-            } else {
-                console.log("Appended");
-            }
-        })
     };
+
     sheets.spreadsheets.values.update({
         auth: auth,
         spreadsheetId: '1PI6c9DOX1xI1daghxPYHXj2BmfgpAfUoBOanbUtmBn8',
-        range: 'KyroLen!B2:N', //Change Sheet1 if your worksheet's name is something else
+        range: 'API TEST!B2:P', //Change Sheet1 if your worksheet's name is something else
         valueInputOption: "USER_ENTERED",
         resource: {
             values: values
@@ -147,10 +132,11 @@ async function addStats(auth){
             console.log('The API returned an error: ' + err);
             return;
         } else {
-            console.log("Updated one row");
+            console.log("Appended");
         }
     });
 }
+//addStats();
 
 function wait(ms){
     var start = new Date().getTime();
